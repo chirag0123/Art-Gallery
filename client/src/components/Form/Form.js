@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { TextField,Button,Typography,Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch ,useSelector} from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 import useStyles from './style';
 import {createPost,updatePost} from '../../actions/posts';
 
@@ -14,7 +14,8 @@ const Form =({currentId,setCurrentId})=>{
     const user=JSON.parse(localStorage.getItem('profile'));
     const classes=useStyles();
     const dispatch=useDispatch();
-    
+    const history=useHistory();
+
     useEffect(()=>{
         if(post) setPostData(post);
     },[post]);
@@ -23,10 +24,10 @@ const Form =({currentId,setCurrentId})=>{
     const handleSubmit=(e)=>{
     e.preventDefault();
     if(currentId){
-        dispatch(updatePost(currentId,{...postData, name:user?.result?.name}));
+        dispatch(updatePost(currentId,{...postData, name:user?.result?.name},history));
     }
     else{
-    dispatch(createPost({...postData, name:user?.result?.name}));
+    dispatch(createPost({...postData, name:user?.result?.name},history));
     }
     clear();
     }
@@ -49,7 +50,7 @@ const Form =({currentId,setCurrentId})=>{
     return(
        <Paper className={classes.paper}>
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant='h6'>{currentId? "Editing":"Posting"} a ArtWork</Typography>
+        <Typography variant='h6'>{currentId? "Editing":"Post"} a ArtWork</Typography>
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e)=>setPostData({...postData, title:e.target.value})} />
         <TextField name="message" variant="outlined" label="Message" fullWidth multiline minRows={4} maxRows={6} value={postData.message} onChange={(e)=>setPostData({...postData, message :e.target.value})} />
         <TextField name="tags" variant="outlined" label="Tags (comma seperated)" fullWidth value={postData.tags} onChange={(e)=>setPostData({...postData, tags:e.target.value.split(',')})} />

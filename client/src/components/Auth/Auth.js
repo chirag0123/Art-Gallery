@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 import { Avatar,Button,Paper,Grid ,Typography,Container } from '@material-ui/core';
-import {GoogleLogin} from 'react-google-login';
+//import {GoogleLogin} from 'react-google-login';
 import {useDispatch} from 'react-redux';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
-import Icon from './Icon';
+//import Icon from './Icon';
 import useStyles from './style'; 
 import {signin,signup} from '../../actions/auth';
 
@@ -44,19 +44,19 @@ const history=useHistory();
     setshowPassword(false);
  };
 
-  const googleSuccess= async (res) =>{
-     const result =res?.profileObj;
-     const token = res?.tokenId;
+  // const googleSuccess= async (res) =>{
+  //    const result =res?.profileObj;
+  //    const token = res?.tokenId;
 
-     try{
-      dispatch({type :'AUTH',data:{result,token}});
-       history.push('/');
+  //    try{
+  //     dispatch({type :'AUTH',data:{result,token}});
+  //      history.push('/');
     
-    }catch(error)
-     {
-       console.log(error);
-     }
-  };
+  //   }catch(error)
+  //    {
+  //      console.log(error);
+  //    }
+  // };
 
   // const googleFailure=(error) =>{
   //   console.log(error);
