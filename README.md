@@ -5,3 +5,8 @@
 <li> The artworks are displayed in form of cards where each card are expandable</li>
 <li> Implemented features like searchings by title and like/dislike </li>
 </ul>
+
+<br>
+<br>
+<img src="img1.png" alt="image1">
+<img src="img2.png" alt="image2">
